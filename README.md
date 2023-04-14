@@ -3,7 +3,7 @@
 > 该项目基于[[express-ssm]](https://github.com/jitwxs/express-ssm) 项目全面升级，使用当前最为流行的 SpringBoot 框架，相关技术栈全面更新！是您深入学习 SpringBoot 开发的最佳实践！
 
 ### 二次开发
-项目github令牌：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
+项目github令牌：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
 
 数据库：root@doisnot.com:3306 nihaonihao000...
 
