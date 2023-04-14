@@ -20,8 +20,6 @@
                 </div>
                 <ul id="myTab" class="nav nav-tabs">
                     <li class="active"><a href="#namePW" data-toggle="tab">用户名登陆</a></li>
-                    <li><a href="#phone" data-toggle="tab">短信验证登录</a></li>
-                    <li class="dropdown"> <a href="#face" data-toggle="tab">人脸登录</a> </li>
                 </ul>
                 <div id="myTabContent" class="tab-content">
                     <div class="tab-pane fade in active" id="namePW">
@@ -34,19 +32,7 @@
                                 <label for="passwd">密码</label>
                                 <input type="password" class="form-control" id="passwd" name="password" placeholder="请输入密码">
                             </div>
-                            <div class="form-group">
-                                <div>
-                                    <label for="verifyCode">验证码</label>
-                                </div>
-                                <div class="row" >
-                                    <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12" >
-                                        <input type="text" class="form-control" name="verifyCode" id="verifyCode" placeholder="请输入验证码">
-                                    </div>
-                                    <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12 ">
-                                        <img src="/auth/code/getVerifyCode" title="看不清，请点我" onclick="refresh(this)" onmouseover="mouseover(this)" >
-                                    </div>
-                                </div>
-                            </div>
+
                             <div class="form-group">
                                 <div class="checkbox">
                                     <input type="checkbox" name="remember-me" checked> 自动登录
@@ -54,16 +40,6 @@
                             </div>
                             <button type="submit" class="btn btn-success btn-lg btn-block">登录</button>
                         </form>
-                        <div class="separa">
-                            <div class="row">
-                                <div class="col-md-5 col-sm-5 col-lg-5 col-xs-5 line"></div>
-                                <div class="col-md-2 col-sm-2 col-lg-2 col-xs-2"><span>or</span></div>
-                                <div class="col-md-5 col-sm-5 col-lg-5 col-xs-5 line"></div>
-                            </div>
-                            <button class="btn btn-default btn-lg btn-qq" onclick="window.location.href='/auth/third-login/qq'">
-                                <img width="30" th:src="@{/assets/img/qq.png}" src="../static/assets/img/qq.png" alt="Sign in with QQ"> Sign in with QQ
-                            </button>
-                        </div>
                     </div>
                     <div class="tab-pane fade" id="phone">
                         <form role="form" action="/auth/mobile-login" method="post">

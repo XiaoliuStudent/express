@@ -54,16 +54,6 @@
                                 <button type="button" class="btn btn-default col-md-3" onclick="showModel(4)">修改性别</button>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="faceLogin" class="col-md-2 control-label">人脸登录</label>
-                            <div class="col-md-10">
-                                <p class="form-control-static col-md-7" id="faceLogin"
-                                   th:style="${info.canFace == '0' ? 'color:gray' : ''}"
-                                   th:text="${info.canFace == '1' ? '已绑定人脸' : '您未绑定人脸，绑定后可以使用人脸登录'}"></p>
-                                <button type="button" class="btn btn-default col-md-3" th:if="${info.canFace == '1'}" onclick="showModel(5)">更换人脸</button>
-                                <button type="button" class="btn btn-danger col-md-3" th:if="${info.canFace == '0'}" onclick="showModel(5)">绑定人脸</button>
-                            </div>
-                        </div>
                     </form>
                 </div><hr>
             </div>

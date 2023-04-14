@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  * 传统登录的鉴权过滤器
+ *
  * @author jitwxs
  * @since 2019/1/9 13:52
  */
@@ -47,6 +48,7 @@ public class TraditionAuthenticationFilter extends AbstractAuthenticationProcess
         }
 
         String verifyCode = request.getParameter(SecurityConstant.VALIDATE_CODE_PARAMETER);
+        System.out.printf("aaa" + verifyCode);
 
         if (!validateVerify(verifyCode)) {
             throw new DefaultAuthException("验证码输入错误");
@@ -70,12 +72,15 @@ public class TraditionAuthenticationFilter extends AbstractAuthenticationProcess
         HttpSession session = request.getSession();
 
         Object validateCode = session.getAttribute("validateCode");
-        if(validateCode == null) {
-            return false;
-        }
+        // hangyu 我修改了取消验证码登录
+//        if(validateCode == null) {
+//            return false;
+//        }
 
         // 不分区大小写
-        return StringUtils.equalsIgnoreCase((String)validateCode, inputVerify);
+//        return StringUtils.equalsIgnoreCase((String)validateCode, inputVerify);
+
+        return true;
     }
 
     private void setDetails(HttpServletRequest request, TraditionAuthenticationToken authRequest) {

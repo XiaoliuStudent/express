@@ -29,6 +29,7 @@ public class OAuthServiceImpl implements OAuthService {
     @Override
     public boolean checkState(String state) {
         Boolean flag = redisTemplate.opsForSet().isMember(RedisKeyConstant.OAUTH_STATE, state);
+        System.out.printf("checkstate");
         // 如果不存在，代表state非法；否则合法，并将其从缓存中删除
         if(flag == null || !flag) {
             return false;

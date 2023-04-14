@@ -36,6 +36,6 @@ public class RedisServiceImpl implements RedisService {
 
         log.info("Express api request limit rate:too many requests: key={}, redis count={}, max count={}, " +
                 "expire time= {} s, user-agent={} ", key, count, max, expireTime, userAgent);
-        return true;
+        return false;
     }
 }

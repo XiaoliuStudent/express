@@ -62,6 +62,11 @@ public class AuthController {
      */
     @PostMapping(SecurityConstant.VALIDATE_CODE_URL_PREFIX + "/check-img")
     public ResponseResult checkVerifyCode(String code, HttpSession session) {
+
+        System.out.println("nihao");
+        System.out.println(code);
+
+
         if(StringUtils.isBlank(code)) {
             return ResponseResult.failure(ResponseErrorCodeEnum.PARAMETER_ERROR);
         }
