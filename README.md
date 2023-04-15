@@ -111,9 +111,10 @@ alipay:
   return-url: ${server.addr}/order/alipay/return # 同步通知URL，无需公网访问
 ```
 
-其中 `notify-url` 和 `return-url`为支付宝的支付同步回调和异步回调，请根据自己需求修改 Url 前缀即可，即 `${server.addr}` 部分。
+其中 `notify-url` 和 `return-url`为支付宝的支付同步回调和异步回调，请根据自己需求修改 Url 前缀即可，即 `${server.addr}`
+部分。
 
-例如，当你处于本地启动，端口号为 8080 时，`notify-url` 和 `return-url` 保持不变，可以接受到同步回调，但是无法接收异步回调。
+例如，当你处于本地启动，端口号为 8090 时，`notify-url` 和 `return-url` 保持不变，可以接受到同步回调，但是无法接收异步回调。
 
 > 详细流程请参考文章：[Java Web中接入支付宝支付](<https://blog.csdn.net/yuanlaijike/article/details/80575513>)
 
@@ -123,16 +124,16 @@ alipay:
 
 （1）登录[QQ互联管理中心](<https://connect.qq.com/manage.html#/>)，创建 **网站应用**。
 
-（2）网站地址为程序配置文件中配置的 `server.add` 属性，例如本地启动，且端口号为 8080 时，则填写为：
+（2）网站地址为程序配置文件中配置的 `server.add` 属性，例如本地启动，且端口号为 8090 时，则填写为：
 
 ```
-http://127.0.0.1:8080
+http://127.0.0.1:8090
 ```
 
-（3）网站回调域为`${server.addr}/auth/third-login/qqCallback`，当本地启动，且端口号为8080时，填写为：
+（3）网站回调域为`${server.addr}/auth/third-login/qqCallback`，当本地启动，且端口号为8090时，填写为：
 
 ```
-http://127.0.0.1:8080/auth/third-login/qqCallback
+http://127.0.0.1:8090/auth/third-login/qqCallback
 ```
 
 （4）点击**创建应用**按钮即可。即使提示正在审核，或者审核失败也可以正常使用，仅限申请者的QQ号登录。
