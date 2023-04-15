@@ -93,7 +93,7 @@
                 </form>
                 <form class="form-inline col-sm-4" id="moniPayForm" action="/user/paymentResult" method="get">
                     <input type="hidden" id="moniPayMoney" name="money">
-                    <button class="btn btn-info" type="button" onclick="ajaxPost(aa)">模拟支付成功</button>
+                    <button class="btn btn-info" type="button" onclick="ajaxPost(aaa)">模拟支付成功</button>
                 </form>
                 <form class="form-inline col-sm-4" id="wechatForm" action="#" method="post">
                     <button class="btn btn-default" type="button" disabled>微信支付</button>
@@ -110,7 +110,7 @@
 <script th:src="@{/assets/layer/layer.js}" src="../../static/assets/layer/layer.js"></script>
 <script th:src="@{/assets/js/bootstrap.min.js}" src="../../static/assets/js/bootstrap.min.js"></script>
 <script>
-    var aa = {"aa": "aa"}
+    var aa = 0
 
     function ajaxObject() {
         var xmlHttp;
@@ -134,10 +134,10 @@
     }
 
     // ajax post请求：
-    function ajaxPost(url, data, fnSucceed, fnFail, fnLoading) {
+    function ajaxPost(fnSucceed, fnFail, fnLoading) {
         var ajax = ajaxObject();
-        ajax.open("post", "/order/alipay", this.aa);
-        ajax.setRequestHeader("Content-Type", "application/json");
+        ajax.open("post", "/order/alipay", true);
+        ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         ajax.onreadystatechange = function () {
             if (ajax.readyState === 4) {
                 if (ajax.status === 200) {
@@ -149,10 +149,15 @@
                 fnLoading();
             }
         }
-        ajax.send(this.aa)
-        setTimeout(() => window.location.replace('/user/paymentResult'), 2000)
+        if (total === 0) {
+            total = 0.01
+        }
+        ajax.send("money=" + total)
 
+    }
 
+    function aaa() {
+        window.location.replace('/user/paymentResult')
     }
 
 

@@ -16,8 +16,9 @@ import java.util.Map;
 
 /**
  * 管理员页面 Controller
- * @author xiangsheng.wu
- * @date 2019年05月02日 14:38
+ *
+ * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+ * @date 2023年4月15日05月02日 14:38
  */
 @Controller
 @RequestMapping("/admin")

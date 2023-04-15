@@ -5,9 +5,10 @@ import java.util.UUID;
 
 /**
  * 随机工具类
+ *
+ * @version @date 2023年4月15日
  * @className RandomUtils.java
- * @version 创建时间：2018年4月15日 下午3:44:10
-*/
+ */
 public final class RandomUtils {
     private static final String ALLCHAR
             = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -17,7 +18,7 @@ public final class RandomUtils {
 
     /**
      * 生成指定范围内的随机数
-     * @date 创建时间：2018年4月15日 下午3:39:43
+     * @date 2023年4月15日@date 2023年4月15日
      */
     public static int integer(int scopeMin, int scoeMax) {
         Random random = new Random();
@@ -26,7 +27,7 @@ public final class RandomUtils {
 
     /**
      * 返回固定长度的数字
-     * @date 创建时间：2018年4月15日 下午3:40:29
+     * @date 2023年4月15日@date 2023年4月15日
      */
     public static String number(int length) {
         StringBuffer sb = new StringBuffer();
@@ -39,7 +40,7 @@ public final class RandomUtils {
 
     /**
      * 返回一个定长的随机字符串(包含大小写字母、数字)
-     * @date 创建时间：2018年4月15日 下午3:40:47
+     * @date 2023年4月15日@date 2023年4月15日
      */
     public static String stringWithNumber(int length) {
         StringBuffer sb = new StringBuffer();
@@ -52,7 +53,7 @@ public final class RandomUtils {
 
     /**
      * 返回一个定长的随机纯字母字符串(只包含大小写字母)
-     * @date 创建时间：2018年4月15日 下午3:41:41
+     * @date 2023年4月15日@date 2023年4月15日
      */
     public static String string(int length) {
         StringBuffer sb = new StringBuffer();
@@ -65,7 +66,7 @@ public final class RandomUtils {
 
     /**
      * 根据数字生成一个定长的字符串，长度不够前面补0
-     * @date 创建时间：2018年4月15日 下午3:44:30
+     * @date 2023年4月15日@date 2023年4月15日
      */
     public static String num2String(long num, int length) {
         StringBuffer sb = new StringBuffer();
@@ -81,7 +82,7 @@ public final class RandomUtils {
 
     /**
      * 随机返回数组中某个元素
-     * @date 创建时间：2018年4月15日 下午3:45:43
+     * @date 2023年4月15日@date 2023年4月15日
      */
     public static <T> T randomItem(T[] param) {
         int index = integer(0, param.length);
@@ -90,7 +91,7 @@ public final class RandomUtils {
 
     /**
      * 32位UUID
-     * @date 创建时间：2018年4月15日 下午3:49:07
+     * @date 2023年4月15日@date 2023年4月15日
      */
     public static String uuid() {
         UUID uuid = UUID.randomUUID();
@@ -98,10 +99,10 @@ public final class RandomUtils {
         return s.substring(0, 8) + s.substring(9, 13) +
                 s.substring(14, 18) + s.substring(19, 23) + s.substring(24);
     }
-    
+
     /**
      * 根据时间生成随机数15位
-     * @date 创建时间：2018年4月15日 下午3:51:52
+     * @date 2023年4月15日@date 2023年4月15日
      */
     public static String time() {
         long millis = System.currentTimeMillis();
@@ -112,7 +113,7 @@ public final class RandomUtils {
 
     /**
      * 生成一个定长的纯0字符串
-     * @date 创建时间：2018年4月15日 下午3:45:00
+     * @date 2023年4月15日@date 2023年4月15日
      */
     public static String zeroString(int length) {
         StringBuffer sb = new StringBuffer();

@@ -22,8 +22,9 @@ import java.util.Map;
 
 /**
  * API 评分接口
- * @author jitwxs
- * @date 2019年05月04日 10:15
+ *
+ * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+ * @date 2023年4月15日05月04日 10:15
  */
 @RestController
 @RequestMapping("/api/v1/evaluate")
@@ -33,8 +34,8 @@ public class EvaluateApiController {
 
     /**
      * 订单评分
-     * @author jitwxs
-     * @date 2019/5/4 10:18
+     * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+     * @date 2023年4月15日5/4 10:18
      */
     @PostMapping("/order/{orderId}")
     @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_COURIER')")
@@ -57,8 +58,8 @@ public class EvaluateApiController {
 
     /**
      * 分页个人评价列表
-     * @author jitwxs
-     * @date 2019/5/4 12:19
+     * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+     * @date 2023年4月15日5/4 12:19
      */
     @GetMapping("/list")
     @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_COURIER')")
@@ -108,8 +109,8 @@ public class EvaluateApiController {
 
     /**
      * 获取评分，取值0~10，三位小数
-     * @author jitwxs
-     * @date 2019/5/4 10:21
+     * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+     * @date 2023年4月15日5/4 10:21
      */
     private double getScore(String score) {
         Double result = StringUtils.toDouble(score, -1D);

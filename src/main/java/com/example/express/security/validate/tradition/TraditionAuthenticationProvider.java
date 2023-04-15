@@ -11,8 +11,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
- * @author xiangsheng.wu
- * @date 2019年05月01日 20:51
+ * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+ * @date 2023年4月15日05月01日 20:51
  */
 @Slf4j
 public class TraditionAuthenticationProvider implements AuthenticationProvider {

@@ -8,8 +8,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @author jitwxs
- * @date 2019年04月23日 0:29
+ * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+ * @date 2023年4月15日04月23日 0:29
  */
 @Getter
 @Configuration

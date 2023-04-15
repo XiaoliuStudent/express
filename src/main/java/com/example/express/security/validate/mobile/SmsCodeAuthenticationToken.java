@@ -8,8 +8,9 @@ import java.util.Collection;
 
 /**
  * 短信登录 AuthenticationToken，模仿 UsernamePasswordAuthenticationToken 实现
- * @author jitwxs
- * @since 2019/1/9 13:47
+ *
+ * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+ * @since 2023年4月15日
  */
 public class SmsCodeAuthenticationToken extends AbstractAuthenticationToken {
 

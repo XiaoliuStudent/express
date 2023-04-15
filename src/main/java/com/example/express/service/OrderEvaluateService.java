@@ -12,9 +12,10 @@ public interface OrderEvaluateService extends IService<OrderEvaluate> {
     boolean changEvaluateStatus(String orderId, boolean isOpen);
     /**
      * 能否评价订单
+     *
      * @param roleEnum 只支持用户和配送员
-     * @author jitwxs
-     * @date 2019/5/4 0:52
+     * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+     * @date 2023年4月15日5/4 0:52
      */
     boolean canEvaluate(String orderId, String userId, SysRoleEnum roleEnum);
 

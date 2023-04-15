@@ -7,7 +7,8 @@ import java.util.Arrays;
 
 /**
  * 支付状态枚举
- * @date 2019年04月16日 23:15
+ *
+ * @date 2023年4月15日04月16日 23:15
  */
 @Getter
 public enum PaymentStatusEnum implements IEnum<Integer> {

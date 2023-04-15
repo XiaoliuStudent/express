@@ -2,7 +2,8 @@ package com.example.express.common.constant;
 
 /**
  * Session key 相关常量
- * @date 2019年04月20日 18:57
+ *
+ * @date 2023年4月15日04月20日 18:57
  */
 public class SessionKeyConstant {
     /**

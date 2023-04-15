@@ -5,8 +5,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * @author jitwxs
- * @date 2019年04月17日 0:32
+ * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+ * @date 2023年4月15日04月17日 0:32
  */
 public class StringUtils extends org.apache.commons.lang3.StringUtils {
 

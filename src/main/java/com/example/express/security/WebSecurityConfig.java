@@ -20,8 +20,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
  * Spring Security 核心配置类
- * @author jitwxs
- * @since 2019/1/8 23:28
+ *
+ * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+ * @since 2023年4月15日
  */
 @Configuration
 @EnableWebSecurity

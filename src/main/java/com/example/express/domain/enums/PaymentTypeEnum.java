@@ -6,7 +6,8 @@ import lombok.NoArgsConstructor;
 
 /**
  * 支付方式枚举
- * @date 2019年04月16日 23:15
+ *
+ * @date 2023年4月15日04月16日 23:15
  */
 @Getter
 public enum PaymentTypeEnum implements IEnum<Integer> {

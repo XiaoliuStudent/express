@@ -15,8 +15,9 @@ import java.util.Collection;
 
 /**
  * 传统登陆 UserDetailsService
- * @author jitwxs
- * @since 2019/1/8 23:34
+ *
+ * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+ * @since 2023年4月15日
  */
 @Service
 public class TraditionUserDetailsService implements UserDetailsService {

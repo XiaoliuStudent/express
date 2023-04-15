@@ -2,7 +2,8 @@ package com.example.express.common.constant;
 
 /**
  * Spring Security 相关常量
- * @since 2019/1/8 23:50
+ *
+ * @since 2023年4月15日
  */
 public class SecurityConstant {
     /**

@@ -20,7 +20,7 @@ import java.util.Map;
 /**
  * 普通用户页面 Controller
  *
- * @date 2019年04月20日 23:29
+ * @date 2023年4月15日04月20日 23:29
  */
 @Controller
 @RequestMapping("/user")
@@ -78,8 +78,8 @@ public class UserPageController {
     /**
      * 支付页面
      *
-     * @author jitwxs
-     * @date 2019/4/23 0:00
+     * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+     * @date 2023年4月15日4/23 0:00
      */
     @RequestMapping("/order/place")
     public String placeOrder(OrderInfo orderInfo, ModelMap map, HttpSession session, @AuthenticationPrincipal SysUser sysUser) {

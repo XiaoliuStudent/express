@@ -11,7 +11,8 @@ import java.util.Set;
 
 /**
  * Json工具类
- * @date  创建时间：2018年4月17日 下午3:39:04
+ *
+ * @date 2023年4月15日 @date 2023年4月15日
  * @dependency jackson-databind
  */
 public class JsonUtils {
@@ -19,8 +20,8 @@ public class JsonUtils {
 
     /**
      * 对象-->Json字符串
-     * @author jitwxs
-     * @version 创建时间：2018年4月17日 下午3:39:35
+     * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+     * @version @date 2023年4月15日
      */
     public static String objectToJson(Object data) {
         try {
@@ -33,8 +34,8 @@ public class JsonUtils {
 
     /**
      * Json字符串-->对象
-     * @author jitwxs
-     * @version 创建时间：2018年4月17日 下午3:39:45
+     * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+     * @version @date 2023年4月15日
      */
     public static <T> T jsonToObject(String jsonData, Class<T> beanType) {
         try {
@@ -47,8 +48,8 @@ public class JsonUtils {
 
     /**
      * Json字符串--> List<对象>
-     * @author jitwxs
-     * @version 创建时间：2018年4月17日 下午3:40:09
+     * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+     * @version @date 2023年4月15日
      */
     public static <T> List<T> jsonToList(String jsonData, Class<T> beanType) {
         JavaType javaType = MAPPER.getTypeFactory().constructParametricType(List.class, beanType);

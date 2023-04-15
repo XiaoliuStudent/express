@@ -16,8 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * API支付接口
- * @author jitwxs
- * @date 2019年04月22日 23:54
+ *
+ * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+ * @date 2023年4月15日04月22日 23:54
  */
 @RestController
 @RequestMapping("/api/v1/payment")
@@ -29,8 +30,8 @@ public class PaymentApiController {
 
     /**
      * 手动同步支付状态
-     * @author jitwxs
-     * @date 2019/4/26 0:51
+     * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+     * @date 2023年4月15日4/26 0:51
      */
     @PostMapping("/sync")
     @RequestRateLimit(limit = RateLimitEnum.RRLimit_1_10)

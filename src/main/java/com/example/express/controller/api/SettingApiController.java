@@ -18,8 +18,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  * API 设置信息
- * @author xiangsheng.wu
- * @date 2019年04月22日 14:35
+ *
+ * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+ * @date 2023年4月15日04月22日 14:35
  */
 @RestController
 @RequestMapping("/api/v1/setting")

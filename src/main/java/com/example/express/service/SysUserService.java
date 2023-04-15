@@ -61,20 +61,23 @@ public interface SysUserService extends IService<SysUser> {
     ResponseResult thirdLogin(String thirdLoginId, ThirdLoginTypeEnum thirdLoginTypeEnum);
     /**
      * 根据用户名注册
-     * @author jitwxs
-     * @date 2019/4/22 0:39
+     *
+     * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+     * @date 2023年4月15日4/22 0:39
      */
     ResponseResult registryByUsername(String username, String password);
+
     /**
      * 根据手机号注册
-     * @author jitwxs
-     * @date 2019/4/22 0:39
+     * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+     * @date 2023年4月15日4/22 0:39
      */
     ResponseResult registryByTel(String tel, String code, HttpSession session);
+
     /**
      * 人脸注册
-     * @author jitwxs
-     * @date 2019/5/3 0:34
+     * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+     * @date 2023年4月15日5/3 0:34
      * @param gender male:男性 female:女性
      */
     ResponseResult registryByFace(String faceToken, String gender);

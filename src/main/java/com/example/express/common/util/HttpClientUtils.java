@@ -313,8 +313,9 @@ public class HttpClientUtils {
     /**
      * url参数转Map
      * 形如：access_token=example_token&scope=&token_type=bearer
-     * @author jitwxs
-     * @since 2018/5/21 16:47
+     *
+     * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+     * @since 2023年4月15日
      */
     public static Map<String, String> params2Map(String params) {
         Map<String, String> map = new HashMap<>();

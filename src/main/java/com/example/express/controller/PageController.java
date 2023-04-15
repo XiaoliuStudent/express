@@ -74,8 +74,9 @@ public class PageController {
 
     /**
      * 跳转到信息补全页面
-     * @author jitwxs
-     * @date 2019/4/21 22:14
+     *
+     * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+     * @date 2023年4月15日4/21 22:14
      */
     @RequestMapping("/completeInfo")
     public String showCompleteInfoPage() {

@@ -7,8 +7,9 @@ import java.io.Serializable;
 
 /**
  * 高校数据
- * @author xiangsheng.wu
- * @date 2019年04月21日 12:40
+ *
+ * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+ * @date 2023年4月15日04月21日 12:40
  */
 @Data
 public class DataSchool implements Serializable {

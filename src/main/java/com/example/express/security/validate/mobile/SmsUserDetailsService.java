@@ -17,8 +17,9 @@ import java.util.Collection;
 
 /**
  * 手机登录 UserDetailService，通过手机号读取信息
- * @author jitwxs
- * @since 2019/1/8 23:37
+ *
+ * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+ * @since 2023年4月15日
  */
 @Service
 public class SmsUserDetailsService implements UserDetailsService {

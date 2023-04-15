@@ -19,8 +19,9 @@ import javax.sql.DataSource;
 
 /**
  * 验证码登陆相关安全设置
- * @author jitwxs
- * @since 2019/1/8 23:58
+ *
+ * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+ * @since 2023年4月15日
  */
 @Component
 public class TraditionSecurityConfig extends SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity> {

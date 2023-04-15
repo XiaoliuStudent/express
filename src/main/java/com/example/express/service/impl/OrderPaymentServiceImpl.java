@@ -47,8 +47,9 @@ public class OrderPaymentServiceImpl extends ServiceImpl<OrderPaymentMapper, Ord
     /**
      * 校验订单
      * 支付宝同步/异步回调时调用
-     * @author jitwxs
-     * @since 2018/6/4 16:40
+     *
+     * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+     * @since 2023年4月15日
      */
     @Override
     public boolean validAlipay(Map<String,String> params) throws Exception {
@@ -176,9 +177,9 @@ public class OrderPaymentServiceImpl extends ServiceImpl<OrderPaymentMapper, Ord
                 "out_trade_no":"152810603232866",
                 "point_amount":"0.00",
                 "receipt_amount":"0.00",
-                "send_pay_date":"2018-06-04 17:54:04",
+                "send_pay_date":"2023-04-15
                 "total_amount":"2.00",
-                "trade_no":"2018060421001004880200500828",
+                "trade_no":"2023060421001004880200500828",
                 "trade_status":"TRADE_SUCCESS"
             },
             "sign":"HqdTcGWWhW4ivZxPNpdZfUkwHsVKg9eQZ2/Z17XA4wngMk3bOFmYYgYX5DwGPxccywyvxa+L7sUDZXQoxMYg2zcbPCLkn2poLCC51IAqCibo8R9F98cLFsjeKIFQ6Mw4a30lcFjr+esRTa8T7bJsoqRl4HX7B1qvMcarWJdBGN8AX3MIRmAWrqs2N4AULUghPucJKsApTi/CVebGYlf2e3cakxUhTos/Rw0Y3kvjwFaDBm18QZAt8xQ5dkYfFEEQuxDNkPYrxZTuAlp5M6BbEzbIf3z1iRBSkLuA7VfpZiZUNDw6dXLmpIaZZJK+3/Ltu3aOUJLlRR7EQ9PX7rDJ6g=="

@@ -23,8 +23,9 @@ import java.util.Map;
 
 /**
  * API订单接口
- * @author jitwxs
- * @date 2019年04月22日 23:54
+ *
+ * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+ * @date 2023年4月15日04月22日 23:54
  */
 @RestController
 @RequestMapping("/api/v1/order")
@@ -39,8 +40,8 @@ public class OrderApiController {
      * - 管理员：任何订单
      * - 派送员：已接的单
      * - 用户：个人订单
-     * @author jitwxs
-     * @date 2019/4/25 23:36
+     * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+     * @date 2023年4月15日4/25 23:36
      */
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_COURIER') or hasRole('ROLE_ADMIN')")
@@ -76,8 +77,8 @@ public class OrderApiController {
      * - 配送员：courierId = self
      * - 管理员：无限制
      * @param type 0:正常订单；1：已删除订单
-     * @author jitwxs
-     * @date 2019/4/24 22:21
+     * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+     * @date 2023年4月15日4/24 22:21
      */
     @GetMapping("/list")
     @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_COURIER') or hasRole('ROLE_ADMIN')")
@@ -298,8 +299,8 @@ public class OrderApiController {
     /**
      * 用户批量删除订单，仅能删除个人订单
      * 状态为订单完成或订单异常
-     * @author jitwxs
-     * @date 2019/4/24 23:08
+     * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+     * @date 2023年4月15日4/24 23:08
      */
     @PostMapping("/batch-delete")
     @PreAuthorize("hasRole('ROLE_USER')")
@@ -310,8 +311,8 @@ public class OrderApiController {
     /**
      * 用户批量撤销订单，仅能撤销个人订单
      * 状态为未接单
-     * @author jitwxs
-     * @date 2019/4/25 0:11
+     * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+     * @date 2023年4月15日4/25 0:11
      */
     @PostMapping("/batch-cancel")
     @PreAuthorize("hasRole('ROLE_USER')")
@@ -323,8 +324,8 @@ public class OrderApiController {
      * 批量恢复订
      * - 普通用户：恢复个人订单
      * - 管理员：恢复任何订单
-     * @author jitwxs
-     * @date 2019/4/26 1:58
+     * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+     * @date 2023年4月15日4/26 1:58
      */
     @PostMapping("/batch-rollback")
     @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")

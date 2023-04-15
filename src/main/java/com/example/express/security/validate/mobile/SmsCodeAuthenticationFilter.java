@@ -13,8 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * 短信登录的鉴权过滤器，模仿 UsernamePasswordAuthenticationFilter 实现
- * @author jitwxs
- * @since 2019/1/9 13:52
+ *
+ * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+ * @since 2023年4月15日
  */
 public class SmsCodeAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
     /**

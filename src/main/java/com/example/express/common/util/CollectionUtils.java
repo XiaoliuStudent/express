@@ -3,15 +3,16 @@ package com.example.express.common.util;
 import java.util.*;
 
 /**
- * @author xiangsheng.wu
- * @date 2019年04月20日 13:22
+ * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+ * @date 2023年4月15日04月20日 13:22
  */
 public class CollectionUtils {
     /**
      * 获取集合第一个元素
      * 如果不存在，返回null
-     * @author jitwxs
-     * @since 2018/6/27 14:44
+     *
+     * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+     * @since 2023年4月15日
      */
     public static <T> T getListFirst(List<T> list) {
         return isListEmpty(list) ? null : list.get(0);
@@ -27,8 +28,8 @@ public class CollectionUtils {
 
     /**
      * 判断数组是否为空
-     * @author jitwxs
-     * @since 2018/7/7 15:00
+     * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+     * @since 2023年4月15日
      */
     public static boolean isArrayEmpty(String[] strings) {
         if(strings == null || strings.length == 0) {
@@ -44,8 +45,8 @@ public class CollectionUtils {
 
     /**
      * 字符串 --> 字符串数组
-     * @author jitwxs
-     * @since 2018/7/16 9:47
+     * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+     * @since 2023年4月15日
      */
     public static String[] str2Array(String str, String split) {
         if(StringUtils.isBlank(str)) {

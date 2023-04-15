@@ -23,8 +23,9 @@ import java.util.Date;
 
 /**
  * API 反馈接口
- * @author xiangsheng.wu
- * @date 2019年04月23日 15:14
+ *
+ * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+ * @date 2023年4月15日04月23日 15:14
  */
 @RestController
 @RequestMapping("/api/v1/feedback")
@@ -84,8 +85,8 @@ public class FeedbackApiController {
     /**
      * 获取配送员需要处理反馈列表
      * 所有无人处理，或者处理人是当前用户，且创建人非当前用户的订单反馈
-     * @author jitwxs
-     * @date 2019/4/25 22:58
+     * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+     * @date 2023年4月15日4/25 22:58
      */
     @GetMapping("/handle-list")
     @PreAuthorize("hasRole('ROLE_COURIER')")
@@ -123,8 +124,8 @@ public class FeedbackApiController {
     /**
      * 创建反馈记录
      * - 仅支持 配送员 & 普通用户
-     * @author jitwxs
-     * @date 2019/4/23 23:13
+     * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+     * @date 2023年4月15日4/23 23:13
      */
     @PostMapping("")
     @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_COURIER')")
@@ -156,8 +157,8 @@ public class FeedbackApiController {
     /**
      * 批量撤销反馈，仅能撤销个人反馈
      * 状态为等待处理
-     * @author jitwxs
-     * @date 2019/4/25 0:11
+     * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+     * @date 2023年4月15日4/25 0:11
      */
     @PostMapping("/batch-cancel")
     @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_COURIER')")

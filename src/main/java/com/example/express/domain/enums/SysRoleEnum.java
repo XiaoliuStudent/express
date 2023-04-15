@@ -7,7 +7,8 @@ import java.util.Arrays;
 
 /**
  * 角色枚举
- * @date 2019年04月17日 0:11
+ *
+ * @date 2023年4月15日04月17日 0:11
  */
 @Getter
 public enum SysRoleEnum implements IEnum<Integer> {

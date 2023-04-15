@@ -23,8 +23,9 @@ import java.util.Map;
 
 /**
  * 用户信息 API Controller
- * @author jitwxs
- * @date 2019年05月02日 12:18
+ *
+ * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+ * @date 2023年4月15日05月02日 12:18
  */
 @RestController
 @RequestMapping("/api/v1/user")
@@ -41,8 +42,8 @@ public class UserApiController {
      * @param isThird 是否绑定三方登录
      * @param username 用户名
      * @param tel 手机号
-     * @author jitwxs
-     * @date 2019/5/2 12:24
+     * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+     * @date 2023年4月15日5/2 12:24
      */
     @GetMapping("/list")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -95,8 +96,8 @@ public class UserApiController {
 
     /**
      * 获取配送员列表
-     * @author jitwxs
-     * @date 2019/5/3 21:58
+     * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+     * @date 2023年4月15日5/3 21:58
      */
     @GetMapping("/courier-list")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -121,8 +122,8 @@ public class UserApiController {
      * 改变用户状态
      * @param type 1. 禁用；2：启用；3：冻结；4：解冻
      * @param hour 冻结小时数
-     * @author jitwxs
-     * @date 2019/5/2 13:50
+     * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+     * @date 2023年4月15日5/2 13:50
      */
     @PostMapping("/{id}/status")
     @PreAuthorize("hasRole('ROLE_ADMIN')")

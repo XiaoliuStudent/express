@@ -35,8 +35,8 @@ import java.util.Map;
 /**
  * 订单
  *
- * @author jitwxs
- * @date 2019年04月23日 0:25
+ * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+ * @date 2023年4月15日04月23日 0:25
  */
 @Controller
 @RequestMapping("/order")
@@ -57,8 +57,8 @@ public class OrderController {
      * 支付宝支付方式
      *
      * @param money 支付金额
-     * @author jitwxs
-     * @since 2018/5/14 8:53
+     * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+     * @since 2023年4月15日
      */
     @PostMapping("/alipay")
     public void paymentAlipay(Double money, HttpSession session, HttpServletResponse response, @AuthenticationPrincipal SysUser sysUser) throws IOException {
@@ -173,8 +173,8 @@ public class OrderController {
      * （3）cookies、session等在此页面会失效，即无法获取这些数据
      * （4）该方式的调试与运行必须在服务器上，即互联网上能访问 *
      *
-     * @author jitwxs
-     * @since 2018/6/4 14:45
+     * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+     * @since 2023年4月15日
      */
     @PostMapping("/alipay/notify")
     public void alipayNotify(HttpServletRequest request, HttpServletResponse response) {
@@ -241,8 +241,8 @@ public class OrderController {
     /**
      * 获取支付参数
      *
-     * @author jitwxs
-     * @since 2018/6/4 16:39
+     * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+     * @since 2023年4月15日
      */
     private Map<String, String> getPayParams(HttpServletRequest request) {
         Map<String, String> params = new HashMap<>(16);

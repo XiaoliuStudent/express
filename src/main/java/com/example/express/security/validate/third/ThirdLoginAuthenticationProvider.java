@@ -9,8 +9,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
  * 三方登陆鉴权 Provider，要求实现 AuthenticationProvider 接口
- * @author jitwxs
- * @since 2019/1/9 13:59
+ *
+ * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+ * @since 2023年4月15日
  */
 @Slf4j
 public class ThirdLoginAuthenticationProvider implements AuthenticationProvider {

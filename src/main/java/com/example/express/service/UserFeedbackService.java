@@ -14,8 +14,9 @@ import java.util.Map;
 public interface UserFeedbackService extends IService<UserFeedback> {
     /**
      * 分页查询前台反馈信息
-     * @author jitwxs
-     * @date 2019/4/23 23:09
+     *
+     * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+     * @date 2023年4月15日4/23 23:09
      */
     BootstrapTableVO<UserFeedbackVO> pageUserFeedbackVO(Page<UserFeedback> page, QueryWrapper<UserFeedback> wrapper);
 

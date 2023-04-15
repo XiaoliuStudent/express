@@ -57,8 +57,9 @@ public class AuthController {
 
     /**
      * 验证图形验证码
-     * @author jitwxs
-     * @since 2018/5/2 0:02
+     *
+     * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+     * @since 2023年4月15日
      */
     @PostMapping(SecurityConstant.VALIDATE_CODE_URL_PREFIX + "/check-img")
     public ResponseResult checkVerifyCode(String code, HttpSession session) {
@@ -87,7 +88,7 @@ public class AuthController {
 
     /**
      * 获取短信验证码
-     * @date 2019/4/17 22:40
+     * @date 2023年4月15日4/17 22:40
      */
     @RequestRateLimit(limit = RateLimitEnum.RRLimit_1_60)
     @GetMapping(SecurityConstant.VALIDATE_CODE_URL_PREFIX + "/sms")
@@ -199,8 +200,8 @@ public class AuthController {
     /**
      * 提取Openid
      * @param str 形如：callback( {"client_id":"YOUR_APPID","openid":"YOUR_OPENID"} );
-     * @author jitwxs
-     * @since 2018/5/22 21:37
+     * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+     * @since 2023年4月15日
      */
     private String getQQOpenid(String str) {
         // 获取花括号内串
@@ -212,8 +213,8 @@ public class AuthController {
 
     /**
      * 人脸登录
-     * @author jitwxs
-     * @date 2019/5/3 0:47
+     * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+     * @date 2023年4月15日5/3 0:47
      */
     @SuppressWarnings("Duplicates")
     @PostMapping("/auth/face-login")
@@ -244,8 +245,8 @@ public class AuthController {
      * 人脸校验
      * 未登录：存session
      * 已登录：存redis
-     * @author jitwxs
-     * @date 2019/5/3 0:23
+     * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+     * @date 2023年4月15日5/3 0:23
      */
     @SuppressWarnings("unchecked")
     @PostMapping("/auth/face-check")
@@ -283,7 +284,7 @@ public class AuthController {
     /**
      * 用户注册
      * @param type 注册类型 1：用户名密码；2：短信验证码；3：人脸
-     * @date 2019/4/17 0:06
+     * @date 2023年4月15日4/17 0:06
      */
     @SuppressWarnings("unchecked")
     @PostMapping("/auth/register")
@@ -323,8 +324,8 @@ public class AuthController {
 
     /**
      * 信息补全
-     * @author jitwxs
-     * @date 2019/4/21 21:07
+     * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+     * @date 2023年4月15日4/21 21:07
      */
     @PostMapping("/auth/complete-info")
     public ResponseResult completeInfo(Integer role, Integer school, Integer sex, String studentIdCard, String realName, String idCard,

@@ -75,7 +75,7 @@ project:
 
 # 服务启动
 server:
-  port: 8080
+  port: 8090
   # 公网暴露 IP
   addr: http://doisnot.com:${server.port}
   max-http-header-size: 8192

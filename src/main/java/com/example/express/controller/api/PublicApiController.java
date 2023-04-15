@@ -20,8 +20,9 @@ import java.util.List;
 
 /**
  * API公开信息
- * @author jitwxs
- * @date 2019年04月21日 23:01
+ *
+ * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+ * @date 2023年4月15日04月21日 23:01
  */
 @RestController
 @RequestMapping("/api/v1/public")
@@ -37,8 +38,8 @@ public class PublicApiController {
 
     /**
      * 根据父ID查询行政区划
-     * @author jitwxs
-     * @date 2019/4/21 23:32
+     * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+     * @date 2023年4月15日4/21 23:32
      * @param id 父ID
      */
     @GetMapping("/area/{id}/child")
@@ -55,8 +56,8 @@ public class PublicApiController {
 
     /**
      * 根据省份ID查询学校
-     * @author jitwxs
-     * @date 2019/4/21 23:32
+     * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+     * @date 2023年4月15日4/21 23:32
      * @param id 省份ID
      */
     @GetMapping("/school/province/{id}")

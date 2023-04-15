@@ -10,8 +10,9 @@ import java.time.LocalDateTime;
 
 /**
  * 用户评分表
- * @author jitwxs
- * @date 2019年05月03日 23:47
+ *
+ * @author 刘航宇 唐志颖 刘磊 杨子龙 孙伟昊
+ * @date 2023年4月15日05月03日 23:47
  */
 @Data
 @Builder

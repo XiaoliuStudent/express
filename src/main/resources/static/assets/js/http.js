@@ -1,7 +1,7 @@
 /*
     desp：HTTP相关
     author:jitwxs
-    time:2018-03-15
+    time:2023-04-15
  */
 
 var HTTP = {
