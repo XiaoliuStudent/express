@@ -654,11 +654,11 @@
     $("#inputProvince").change(function () {
         // 加载高校数据
         let id = $("#inputProvince").val();
-        sendJson(HTTP.GET, "/api/v1/public/school/province/" + id, null, false, function (res) {
+        sendJson(HTTP.GET, "/api/v1/public/school/ /" + id, null, false, function (res) {
             if (res.code === 0) {
                 let html = '', data = res.data;
-                for(let i = 0; i<data.length; i++) {
-                    html += '<option value="'+data[i].id+'">'+data[i].name+'</option>\n';
+                for (let i = 0; i < data.length; i++) {
+                    html += '<option value="' + data[i].id + '">' + data[i].name + '</option>\n';
                 }
                 $("#inputSchool").html(html);
             } else {
