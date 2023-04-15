@@ -64,13 +64,19 @@ public class OrderController {
     public void paymentAlipay(Double money, HttpSession session, HttpServletResponse response, @AuthenticationPrincipal SysUser sysUser) throws IOException {
         OrderInfo orderInfo = (OrderInfo) session.getAttribute(SessionKeyConstant.SESSION_LATEST_EXPRESS);
 
+        if (orderInfo == null || money == null) {
+            throw new CustomException(ResponseErrorCodeEnum.PARAMETER_ERROR);
+        }
+        money = (double) (Math.round(money * 100)) / 100;
+        // 金额保留两位
+//        money = (double) (Math.round(money * 100)) / 100;
 //        if (orderInfo == null || money == null) {
 //            throw new CustomException(ResponseErrorCodeEnum.PARAMETER_ERROR);
 //        }
 
         // 金额保留两位
-        money = 0.01;
 
+//        money = 0.1;
         // 生成订单 & 订单支付
         ResponseResult result1 = orderInfoService.createOrder(orderInfo, money, sysUser.getId());
         if (result1.getCode() != ResponseErrorCodeEnum.SUCCESS.getCode()) {
