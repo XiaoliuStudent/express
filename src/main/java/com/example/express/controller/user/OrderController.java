@@ -34,6 +34,7 @@ import java.util.Map;
 
 /**
  * 订单
+ *
  * @author jitwxs
  * @date 2019年04月23日 0:25
  */
@@ -54,28 +55,29 @@ public class OrderController {
 
     /**
      * 支付宝支付方式
+     *
      * @param money 支付金额
      * @author jitwxs
      * @since 2018/5/14 8:53
      */
     @PostMapping("/alipay")
     public void paymentAlipay(Double money, HttpSession session, HttpServletResponse response, @AuthenticationPrincipal SysUser sysUser) throws IOException {
-        OrderInfo orderInfo = (OrderInfo)session.getAttribute(SessionKeyConstant.SESSION_LATEST_EXPRESS);
+        OrderInfo orderInfo = (OrderInfo) session.getAttribute(SessionKeyConstant.SESSION_LATEST_EXPRESS);
 
-        if(orderInfo == null || money == null) {
-            throw new CustomException(ResponseErrorCodeEnum.PARAMETER_ERROR);
-        }
+//        if (orderInfo == null || money == null) {
+//            throw new CustomException(ResponseErrorCodeEnum.PARAMETER_ERROR);
+//        }
 
         // 金额保留两位
-        money = (double) (Math.round(money * 100)) / 100;
+        money = 0.01;
 
         // 生成订单 & 订单支付
         ResponseResult result1 = orderInfoService.createOrder(orderInfo, money, sysUser.getId());
-        if(result1.getCode() != ResponseErrorCodeEnum.SUCCESS.getCode()) {
+        if (result1.getCode() != ResponseErrorCodeEnum.SUCCESS.getCode()) {
             throw new CustomException(result1);
         }
 
-        String orderId = (String)result1.getData();
+        String orderId = (String) result1.getData();
 
         // 1、设置请求参数
         AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest();
@@ -85,21 +87,21 @@ public class OrderController {
         alipayRequest.setNotifyUrl(aliPayConfig.getNotifyUrl());
 
         // 2、SDK已经封装掉了公共参数，这里只需要传入业务参数，请求参数查阅开头Wiki
-        Map<String,String> map = new HashMap<>(16);
+        Map<String, String> map = new HashMap<>(16);
         map.put("out_trade_no", String.valueOf(orderId));
         map.put("total_amount", String.valueOf(money));
         map.put("subject", "在线支付");
         map.put("body", "大学校园快递代取管理系统");
         // 销售产品码
-        map.put("product_code","FAST_INSTANT_TRADE_PAY");
+        map.put("product_code", "FAST_INSTANT_TRADE_PAY");
 
         alipayRequest.setBizContent(JsonUtils.objectToJson(map));
 
         response.setContentType("text/html;charset=utf-8");
-        try{
+        try {
             // 3、生成支付表单
             AlipayTradePagePayResponse alipayResponse = alipayClient.pageExecute(alipayRequest);
-            if(alipayResponse.isSuccess()) {
+            if (alipayResponse.isSuccess()) {
                 String result = alipayResponse.getBody();
                 response.getWriter().write(result);
             } else {
@@ -110,17 +112,20 @@ public class OrderController {
         }
     }
 
+
     /**
      * 支付宝服务器同步回调
      */
     @GetMapping("/alipay/return")
     public String alipayReturn(HttpServletRequest request, @AuthenticationPrincipal SysUser sysUser, ModelMap map) {
+        System.out.println("print payment1");
+
         // 获取参数
-        Map<String,String> params = getPayParams(request);
+        Map<String, String> params = getPayParams(request);
         try {
             // 验证订单
             boolean flag = paymentService.validAlipay(params);
-            if(flag) {
+            if (flag) {
                 // 验证成功后，修改订单状态为已支付
                 String orderId = params.get("out_trade_no");
                 /*
@@ -161,11 +166,12 @@ public class OrderController {
      * 如果执行页面跳转，支付宝会收不到success字符，会被支付宝服务器判定为该页面程序运行出现异常，而重发处理结果通知
      * （3）cookies、session等在此页面会失效，即无法获取这些数据
      * （4）该方式的调试与运行必须在服务器上，即互联网上能访问 *
+     *
      * @author jitwxs
      * @since 2018/6/4 14:45
      */
     @PostMapping("/alipay/notify")
-    public void alipayNotify(HttpServletRequest request,  HttpServletResponse response){
+    public void alipayNotify(HttpServletRequest request, HttpServletResponse response) {
         /*
          默认只有TRADE_SUCCESS会触发通知，如果需要开通其他通知，请联系客服申请
          触发条件名 	    触发条件描述 	触发条件默认值
@@ -176,11 +182,11 @@ public class OrderController {
         来源：https://docs.open.alipay.com/270/105902/#s2
          */
         // 获取参数
-        Map<String,String> params = getPayParams(request);
-        try{
+        Map<String, String> params = getPayParams(request);
+        try {
             // 验证订单
             boolean flag = paymentService.validAlipay(params);
-            if(flag) {
+            if (flag) {
                 //商户订单号
                 String orderId = params.get("out_trade_no");
                 //支付宝交易号
@@ -204,35 +210,37 @@ public class OrderController {
                      * 订单完成
                      * （1）退款日期超过可退款期限后
                      */
-                    case "TRADE_FINISHED" :
+                    case "TRADE_FINISHED":
                         paymentService.updateStatus(orderId, PaymentStatusEnum.TRADE_FINISHED);
                         break;
                     /*
                      * 订单Success
                      * （1）用户付款成功
                      */
-                    case "TRADE_SUCCESS" :
+                    case "TRADE_SUCCESS":
                         paymentService.updateStatus(orderId, PaymentStatusEnum.TRADE_SUCCESS, tradeNo);
                         break;
-                    default:break;
+                    default:
+                        break;
                 }
                 response.getWriter().write("success");
-            }else {
+            } else {
                 response.getWriter().write("fail");
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     /**
      * 获取支付参数
+     *
      * @author jitwxs
      * @since 2018/6/4 16:39
      */
-    private Map<String,String> getPayParams(HttpServletRequest request) {
-        Map<String,String> params = new HashMap<>(16);
-        Map<String,String[]> requestParams = request.getParameterMap();
+    private Map<String, String> getPayParams(HttpServletRequest request) {
+        Map<String, String> params = new HashMap<>(16);
+        Map<String, String[]> requestParams = request.getParameterMap();
 
         Iterator<String> iter = requestParams.keySet().iterator();
         while (iter.hasNext()) {

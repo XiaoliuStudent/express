@@ -63,24 +63,24 @@ public class AuthController {
     @PostMapping(SecurityConstant.VALIDATE_CODE_URL_PREFIX + "/check-img")
     public ResponseResult checkVerifyCode(String code, HttpSession session) {
 
-        System.out.println("nihao");
-        System.out.println(code);
+//        System.out.println("nihao");
+//        System.out.println(code);
 
-
-        if(StringUtils.isBlank(code)) {
-            return ResponseResult.failure(ResponseErrorCodeEnum.PARAMETER_ERROR);
-        }
-
-        Object systemCode = session.getAttribute("validateCode");
-        if(systemCode == null) {
-            return ResponseResult.failure(ResponseErrorCodeEnum.SYSTEM_ERROR);
-        }
-
-        String validateCode = ((String)systemCode).toLowerCase();
-
-        if(!validateCode.equals(code.toLowerCase())) {
-            return ResponseResult.failure(ResponseErrorCodeEnum.VERIFY_CODE_ERROR);
-        }
+    // 航宇：我取消了验证码认证
+//        if(StringUtils.isBlank(code)) {
+//            return ResponseResult.failure(ResponseErrorCodeEnum.PARAMETER_ERROR);
+//        }
+//
+//        Object systemCode = session.getAttribute("validateCode");
+//        if(systemCode == null) {
+//            return ResponseResult.failure(ResponseErrorCodeEnum.SYSTEM_ERROR);
+//        }
+//
+//        String validateCode = ((String)systemCode).toLowerCase();
+//
+//        if(!validateCode.equals(code.toLowerCase())) {
+//            return ResponseResult.failure(ResponseErrorCodeEnum.VERIFY_CODE_ERROR);
+//        }
 
         return ResponseResult.success();
     }

@@ -57,14 +57,14 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
     @Override
     public boolean isExistUnfinishedOrder(String userId, SysRoleEnum roleEnum) {
         int count = Integer.MAX_VALUE;
-        if(roleEnum == SysRoleEnum.USER) {
+        if (roleEnum == SysRoleEnum.USER) {
             count = orderInfoMapper.selectCount(new QueryWrapper<OrderInfo>()
                     .eq("user_id", userId)
                     .in("status", OrderStatusEnum.WAIT_DIST.getStatus(), OrderStatusEnum.TRANSPORT.getStatus()));
-        } else if(roleEnum == SysRoleEnum.COURIER) {
+        } else if (roleEnum == SysRoleEnum.COURIER) {
             count = orderInfoMapper.selectCount(new QueryWrapper<OrderInfo>()
                     .eq("courier_id", userId)
-                    .in("status",  OrderStatusEnum.TRANSPORT.getStatus()));
+                    .in("status", OrderStatusEnum.TRANSPORT.getStatus()));
         }
 
         return count != 0;
@@ -79,14 +79,14 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
         orderInfo.setOrderStatus(OrderStatusEnum.WAIT_DIST);
         orderInfo.setUserId(uid);
 
-       if(!this.retBool(orderInfoMapper.insert(orderInfo))) {
-           transactionManager.rollback(status);
-           return ResponseResult.failure(ResponseErrorCodeEnum.ORDER_CREATE_ERROR);
-       }
+        if (!this.retBool(orderInfoMapper.insert(orderInfo))) {
+            transactionManager.rollback(status);
+            return ResponseResult.failure(ResponseErrorCodeEnum.ORDER_CREATE_ERROR);
+        }
 
-       String orderId = orderInfo.getId();
+        String orderId = orderInfo.getId();
         boolean b = orderPaymentService.createAliPayment(orderId, money, aliPayConfig.getSellerId());
-        if(!b) {
+        if (!b) {
             transactionManager.rollback(status);
             return ResponseResult.failure(ResponseErrorCodeEnum.ORDER_PAYMENT_CREATE_ERROR);
         }
@@ -98,7 +98,7 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
     @Override
     public OrderDescVO getDescVO(String orderId) {
         OrderInfo orderInfo = orderInfoMapper.selectById(orderId);
-        if(orderInfo == null) {
+        if (orderInfo == null) {
             return null;
         }
 
@@ -113,14 +113,15 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
                 .remark(orderInfo.getRemark())
                 .orderStatus(orderInfo.getOrderStatus().getName()).build();
 
-        if(StringUtils.isNotBlank(orderInfo.getCourierId())) {
+        if (StringUtils.isNotBlank(orderInfo.getCourierId())) {
             String courierFrontName = sysUserService.getFrontName(orderInfo.getCourierId());
             vo.setCourierFrontName(courierFrontName);
             vo.setCourierRemark(orderInfo.getCourierRemark());
         }
 
         OrderPayment payment = orderPaymentService.getById(orderId);
-        if(payment != null) {
+        if (payment != null) {
+            System.out.printf("aaa" + payment.getPaymentStatus().getName());
             vo.setPaymentStatus(payment.getPaymentStatus().getName());
             vo.setPaymentType(payment.getPaymentType().getName());
             vo.setPayment(payment.getPayment().toString());
@@ -142,14 +143,14 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
         IPage<UserOrderVO> selectPage = orderInfoMapper.pageUserOrderVO(page, sql, isDelete);
 
 
-        for(UserOrderVO orderVO : selectPage.getRecords()) {
+        for (UserOrderVO orderVO : selectPage.getRecords()) {
             // 设置快递公司
-            if(StringUtils.isNotBlank(orderVO.getCompany())) {
+            if (StringUtils.isNotBlank(orderVO.getCompany())) {
                 orderVO.setCompany(dataCompanyService.getByCache(StringUtils.toInteger(orderVO.getCompany())).getName());
             }
             // 设置是否可以评分
             boolean canEvaluate = orderEvaluateService.canEvaluate(orderVO.getId(), userId, SysRoleEnum.USER);
-            if(canEvaluate) {
+            if (canEvaluate) {
                 orderVO.setCanScore("1");
             } else {
                 orderVO.setCanScore("0");
@@ -169,15 +170,15 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
         IPage<CourierOrderVO> selectPage = orderInfoMapper.pageCourierOrderVO(page, sql);
 
 
-        for(CourierOrderVO orderVO : selectPage.getRecords()) {
+        for (CourierOrderVO orderVO : selectPage.getRecords()) {
             // 设置快递公司
-            if(StringUtils.isNotBlank(orderVO.getCompany())) {
+            if (StringUtils.isNotBlank(orderVO.getCompany())) {
                 orderVO.setCompany(dataCompanyService.getByCache(StringUtils.toInteger(orderVO.getCompany())).getName());
             }
 
             // 设置是否可以评分
             boolean canEvaluate = orderEvaluateService.canEvaluate(orderVO.getId(), userId, SysRoleEnum.COURIER);
-            if(canEvaluate) {
+            if (canEvaluate) {
                 orderVO.setCanScore("1");
             } else {
                 orderVO.setCanScore("0");
@@ -196,9 +197,9 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
 
         IPage<AdminOrderVO> selectPage = orderInfoMapper.pageAdminOrderVO(page, sql, isDelete);
 
-        for(AdminOrderVO orderVO : selectPage.getRecords()) {
+        for (AdminOrderVO orderVO : selectPage.getRecords()) {
             // 设置快递公司
-            if(StringUtils.isNotBlank(orderVO.getCompany())) {
+            if (StringUtils.isNotBlank(orderVO.getCompany())) {
                 orderVO.setCompany(dataCompanyService.getByCache(StringUtils.toInteger(orderVO.getCompany())).getName());
             }
         }
@@ -212,12 +213,12 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
     @Override
     public ResponseResult batchRemoveOrder(String[] ids) {
         int success = 0;
-        for(String orderId : ids) {
+        for (String orderId : ids) {
             OrderInfo orderInfo = orderInfoMapper.selectById(orderId);
             if (orderInfo.getOrderStatus() == OrderStatusEnum.TRANSPORT) {
                 continue;
             }
-            if(manualDelete(orderId, 1, OrderDeleteEnum.SYSTEM.getType())) {
+            if (manualDelete(orderId, 1, OrderDeleteEnum.SYSTEM.getType())) {
                 success++;
             }
         }
@@ -232,15 +233,15 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
     @Override
     public ResponseResult batchDeleteOrder(String[] ids, String userId) {
         int success = 0;
-        for(String orderId : ids) {
+        for (String orderId : ids) {
             OrderInfo orderInfo = orderInfoMapper.selectById(orderId);
-            if(!userId.equals(orderInfo.getUserId())) {
+            if (!userId.equals(orderInfo.getUserId())) {
                 continue;
             }
             if (orderInfo.getOrderStatus() != OrderStatusEnum.COMPLETE && orderInfo.getOrderStatus() != OrderStatusEnum.ERROR) {
                 continue;
             }
-            if(manualDelete(orderId, 1, OrderDeleteEnum.MANUAL.getType())) {
+            if (manualDelete(orderId, 1, OrderDeleteEnum.MANUAL.getType())) {
                 success++;
             }
         }
@@ -255,15 +256,15 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
     @Override
     public ResponseResult batchCancelOrder(String[] ids, String userId) {
         int success = 0;
-        for(String orderId : ids) {
+        for (String orderId : ids) {
             OrderInfo orderInfo = orderInfoMapper.selectById(orderId);
-            if(!userId.equals(orderInfo.getUserId())) {
+            if (!userId.equals(orderInfo.getUserId())) {
                 continue;
             }
             if (orderInfo.getOrderStatus() != OrderStatusEnum.WAIT_DIST) {
                 continue;
             }
-            if(manualDelete(orderId, 1, OrderDeleteEnum.CANCEL.getType())) {
+            if (manualDelete(orderId, 1, OrderDeleteEnum.CANCEL.getType())) {
                 success++;
             }
         }
@@ -279,14 +280,14 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
     @Override
     public ResponseResult batchRollback(String[] ids, String userId) {
         int success = 0;
-        for(String orderId : ids) {
+        for (String orderId : ids) {
             OrderInfo orderInfo = orderInfoMapper.selectByIdIgnoreDelete(orderId);
 
-            if(userId != null && !userId.equals(orderInfo.getUserId())) {
+            if (userId != null && !userId.equals(orderInfo.getUserId())) {
                 continue;
             }
 
-            if(manualDelete(orderId, 0, OrderDeleteEnum.CANCEL.getType())) {
+            if (manualDelete(orderId, 0, OrderDeleteEnum.CANCEL.getType())) {
                 success++;
             }
         }
@@ -302,17 +303,17 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
     @Override
     public ResponseResult batchAcceptOrder(String[] ids, String userId) {
         int success = 0;
-        for(String orderId: ids) {
+        for (String orderId : ids) {
             OrderInfo orderInfo = orderInfoMapper.selectById(orderId);
 
             // 限定订单状态为未接单
-            if(orderInfo.getOrderStatus() != OrderStatusEnum.WAIT_DIST) {
+            if (orderInfo.getOrderStatus() != OrderStatusEnum.WAIT_DIST) {
                 continue;
             }
 
             orderInfo.setCourierId(userId);
             orderInfo.setOrderStatus(OrderStatusEnum.TRANSPORT);
-            if(this.retBool(orderInfoMapper.updateById(orderInfo))) {
+            if (this.retBool(orderInfoMapper.updateById(orderInfo))) {
                 success++;
             }
         }
@@ -333,22 +334,22 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
         TransactionStatus status = transactionManager.getTransaction(definition);
 
         OrderInfo orderInfo = getById(orderId);
-        if(orderInfo == null) {
+        if (orderInfo == null) {
             return ResponseResult.failure(ResponseErrorCodeEnum.ORDER_NOT_EXIST);
         }
 
         OrderStatusEnum originStatus = orderInfo.getOrderStatus();
         // 限定订单状态，非未接单
-        if(originStatus == OrderStatusEnum.WAIT_DIST) {
+        if (originStatus == OrderStatusEnum.WAIT_DIST) {
             return ResponseResult.failure(ResponseErrorCodeEnum.OPERATION_ERROR);
         }
-        if(originStatus == targetStatus) {
+        if (originStatus == targetStatus) {
             return ResponseResult.success();
         }
 
         // 如果原始订单状态为配送中，开启订单评价
-        if(originStatus == OrderStatusEnum.TRANSPORT) {
-            if(!orderEvaluateService.changEvaluateStatus(orderId, true)) {
+        if (originStatus == OrderStatusEnum.TRANSPORT) {
+            if (!orderEvaluateService.changEvaluateStatus(orderId, true)) {
                 transactionManager.rollback(status);
                 return ResponseResult.failure(ResponseErrorCodeEnum.OPEN_EVALUATE_ERROR);
             }
@@ -356,10 +357,10 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
 
         // 更新订单状态
         orderInfo.setOrderStatus(targetStatus);
-        if(StringUtils.isNotBlank(remark)) {
+        if (StringUtils.isNotBlank(remark)) {
             orderInfo.setCourierRemark(remark);
         }
-        if(this.retBool(orderInfoMapper.updateById(orderInfo))) {
+        if (this.retBool(orderInfoMapper.updateById(orderInfo))) {
             transactionManager.commit(status);
             return ResponseResult.success();
         } else {
@@ -371,22 +372,22 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
     @Override
     public ResponseResult batchAllotOrder(String[] ids, String courierId) {
         int success = 0;
-        for(String orderId : ids) {
+        for (String orderId : ids) {
             OrderInfo orderInfo = orderInfoMapper.selectById(orderId);
 
             // 限定订单状态，未接单
-            if(orderInfo.getOrderStatus() != OrderStatusEnum.WAIT_DIST) {
+            if (orderInfo.getOrderStatus() != OrderStatusEnum.WAIT_DIST) {
                 continue;
             }
-           // 订单状态为支付成功、支付结束
+            // 订单状态为支付成功、支付结束
             OrderPayment payment = orderPaymentService.getById(orderId);
-            if(payment.getPaymentStatus() != PaymentStatusEnum.TRADE_SUCCESS && payment.getPaymentStatus() != PaymentStatusEnum.TRADE_FINISHED) {
+            if (payment.getPaymentStatus() != PaymentStatusEnum.TRADE_SUCCESS && payment.getPaymentStatus() != PaymentStatusEnum.TRADE_FINISHED) {
                 continue;
             }
 
             orderInfo.setCourierId(courierId);
             orderInfo.setOrderStatus(OrderStatusEnum.TRANSPORT);
-            if(this.retBool(orderInfoMapper.updateById(orderInfo))) {
+            if (this.retBool(orderInfoMapper.updateById(orderInfo))) {
                 success++;
             }
         }
@@ -424,12 +425,12 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
         List<OrderInfo> orderInfos = orderInfoMapper.selectList(new QueryWrapper<OrderInfo>().eq("user_id", userId));
 
         int waitCount = 0, transportCount = 0, waitPaymentCount = 0;
-        for(OrderInfo info : orderInfos) {
+        for (OrderInfo info : orderInfos) {
             switch (info.getOrderStatus()) {
                 case WAIT_DIST:
                     waitCount++;
                     OrderPayment payment = orderPaymentService.getById(info.getId());
-                    if(payment != null && payment.getPaymentStatus() == PaymentStatusEnum.WAIT_BUYER_PAY) {
+                    if (payment != null && payment.getPaymentStatus() == PaymentStatusEnum.WAIT_BUYER_PAY) {
                         waitPaymentCount++;
                     }
                     break;
@@ -471,7 +472,7 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
     @Override
     public boolean isUserOrder(String orderId, String userId) {
         OrderInfo info = getById(orderId);
-        if(info == null) {
+        if (info == null) {
             return false;
         }
         return info.getUserId().equals(userId);
@@ -480,7 +481,7 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
     @Override
     public boolean isCourierOrder(String orderId, String courierId) {
         OrderInfo info = getById(orderId);
-        if(info == null || StringUtils.isBlank(info.getCourierId())) {
+        if (info == null || StringUtils.isBlank(info.getCourierId())) {
             return false;
         }
         return info.getCourierId().equals(courierId);

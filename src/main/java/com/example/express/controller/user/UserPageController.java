@@ -11,6 +11,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
@@ -18,6 +19,7 @@ import java.util.Map;
 
 /**
  * 普通用户页面 Controller
+ *
  * @date 2019年04月20日 23:29
  */
 @Controller
@@ -63,6 +65,7 @@ public class UserPageController {
 
         return "user/dashboard";
     }
+
     /**
      * 下单页面
      */
@@ -74,6 +77,7 @@ public class UserPageController {
 
     /**
      * 支付页面
+     *
      * @author jitwxs
      * @date 2019/4/23 0:00
      */
@@ -95,11 +99,17 @@ public class UserPageController {
         return "user/history";
     }
 
+    @RequestMapping("/paymentResult")
+    public String nihao() {
+        System.out.println("print payment1");
+        return "user/paymentResult";
+    }
+
     /**
      * 评价中心页面
      */
     @RequestMapping("/evaluate")
-    public String showEvaluate(@AuthenticationPrincipal SysUser sysUser,ModelMap map) {
+    public String showEvaluate(@AuthenticationPrincipal SysUser sysUser, ModelMap map) {
         map.put("frontName", sysUserService.getFrontName(sysUser));
         map.put("score", userEvaluateService.getScoreFromCache(sysUser.getId()));
         return "user/evaluate";
@@ -109,7 +119,7 @@ public class UserPageController {
      * 个人中心页面
      */
     @RequestMapping("/info")
-    public String showInfoPage(@AuthenticationPrincipal SysUser sysUser,ModelMap map) {
+    public String showInfoPage(@AuthenticationPrincipal SysUser sysUser, ModelMap map) {
         map.put("frontName", sysUserService.getFrontName(sysUser));
         UserInfoVO userInfo = sysUserService.getUserInfo(sysUser.getId());
         map.put("info", userInfo);
@@ -120,7 +130,7 @@ public class UserPageController {
      * 回收站页面
      */
     @RequestMapping("/recycle")
-    public String showRecyclePage(@AuthenticationPrincipal SysUser sysUser,ModelMap map) {
+    public String showRecyclePage(@AuthenticationPrincipal SysUser sysUser, ModelMap map) {
         map.put("frontName", sysUserService.getFrontName(sysUser));
         return "user/recycle";
     }
@@ -129,7 +139,7 @@ public class UserPageController {
      * 操作日志页面
      */
     @RequestMapping("/log")
-    public String showLogPage(@AuthenticationPrincipal SysUser sysUser,ModelMap map) {
+    public String showLogPage(@AuthenticationPrincipal SysUser sysUser, ModelMap map) {
         map.put("frontName", sysUserService.getFrontName(sysUser));
         return "user/log";
     }
@@ -138,7 +148,7 @@ public class UserPageController {
      * 反馈建议页面
      */
     @RequestMapping("/feedback")
-    public String showFeedbackPage(@AuthenticationPrincipal SysUser sysUser,ModelMap map) {
+    public String showFeedbackPage(@AuthenticationPrincipal SysUser sysUser, ModelMap map) {
         map.put("frontName", sysUserService.getFrontName(sysUser));
         return "user/feedback";
     }
@@ -147,7 +157,7 @@ public class UserPageController {
      * 收货地址页面
      */
     @RequestMapping("/address")
-    public String showAddressPage(@AuthenticationPrincipal SysUser sysUser,ModelMap map) {
+    public String showAddressPage(@AuthenticationPrincipal SysUser sysUser, ModelMap map) {
         map.put("frontName", sysUserService.getFrontName(sysUser));
         return "user/address";
     }

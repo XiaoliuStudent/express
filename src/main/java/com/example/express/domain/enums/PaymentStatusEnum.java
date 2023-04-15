@@ -14,7 +14,7 @@ public enum PaymentStatusEnum implements IEnum<Integer> {
     /**
      * 等待支付
      */
-    WAIT_BUYER_PAY("等待支付", "WAIT_BUYER_PAY",1),
+    WAIT_BUYER_PAY("支付成功", "TRADE_SUCCESS",3),
 
     /**
      * 未付款交易超时关闭，或支付完成后全额退款
