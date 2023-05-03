@@ -40,29 +40,17 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="expressAddress" class="col-sm-2 control-label">快递寄达地址</label>
-                            <div class="col-sm-10">
-                                <p class="form-control-static" id="expressAddress" th:text="${order.address}"></p>
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <label for="expressRecAddress" class="col-sm-2 control-label">收件地址</label>
                             <div class="col-sm-10">
                                 <p class="form-control-static" id="expressRecAddress" th:text="${order.recAddress}"></p>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="expressCompany" class="col-sm-2 control-label">快递公司</label>
-                            <div class="col-sm-10">
-                                <p class="form-control-static" id="expressCompany" th:text="${company}"></p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="expressOdd" class="col-sm-2 control-label">快递单号</label>
-                            <div class="col-sm-10">
-                                <p class="form-control-static" id="expressOdd" th:text="${order.odd}"></p>
-                            </div>
-                        </div>
+                        <!--                        <div class="form-group">-->
+                        <!--                            <label for="expressOdd" class="col-sm-2 control-label">取件码</label>-->
+                        <!--                            <div class="col-sm-10">-->
+                        <!--                                <p class="form-control-static" id="expressOdd" th:text="${order.odd}"></p>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
                         <div class="form-group">
                             <label for="expressRemark" class="col-sm-2 control-label">备注</label>
                             <div class="col-sm-10">
@@ -168,6 +156,10 @@
 
     function addPackage() {
         var html = '<div class="form-group">\n' +
+            '                            <label class="col-sm-3 control-label">取件码（单位：一个）</label>\n' +
+            '                            <div class="col-sm-9">\n' +
+            '                                <input type="number" class="form-control" name="number" >\n' +
+            '                            </div>\n' +
             '                            <label class="col-sm-3 control-label">预估重量（单位：KG）</label>\n' +
             '                            <div class="col-sm-9">\n' +
             '                                <input type="number" class="form-control" name="price" onchange="updatePrice()" onkeyup="updatePrice()">\n' +
@@ -191,13 +183,13 @@
                     weight = parseFloat(weight);
                     var tmp = 0;
                     // 如果小于500g，2元
-                    if (weight < 0.5)
+                    if (weight < 1)
+                        tmp = 1;
+                    else if (weight <= 10)
                         tmp = 2;
-                    else if (weight < 1)
-                        tmp = 3;
-                    else if (weight >= 1)
+                    else if (weight > 10)
                         // 向上取整
-                        tmp = 4 * Math.ceil(weight);
+                        tmp = 1 * Math.ceil(weight);
                     total += tmp;
                 } else {
                     // 如果不是数字，将input值修改为空

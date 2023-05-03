@@ -85,7 +85,7 @@ public class UserPageController {
     public String placeOrder(OrderInfo orderInfo, ModelMap map, HttpSession session, @AuthenticationPrincipal SysUser sysUser) {
         map.put("frontName", sysUserService.getFrontName(sysUser));
         map.put("order", orderInfo);
-        map.put("company", dataCompanyService.getByCache(orderInfo.getCompany()).getName());
+        map.put("company", "");
         session.setAttribute(SessionKeyConstant.SESSION_LATEST_EXPRESS, orderInfo);
         return "user/payment";
     }
